@@ -31,14 +31,16 @@ require("lazy").setup({
   -- Detect tabstop and shiftwidth automatically
   "tpope/vim-sleuth",
 
-  {
-    "zbirenbaum/copilot.lua",
-  },
-  {
-    'akinsho/bufferline.nvim',
-    version = "*",
-    dependencies = { 'nvim-tree/nvim-web-devicons' }
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  -- },
+
+  -- tab view
+  -- {
+  --   'akinsho/bufferline.nvim',
+  --   version = "*",
+  --   dependencies = { 'nvim-tree/nvim-web-devicons' }
+  -- },
   {
     "stevearc/dressing.nvim",
     lazy = true,
@@ -194,6 +196,7 @@ require("lazy").setup({
       { "<leader>bD", function() require("mini.bufremove").delete(0, true) end,  desc = "Delete Buffer (Force)" },
     },
   },
+  -- file explorer
   {
     "nvim-neo-tree/neo-tree.nvim",
     dependencies = {
@@ -201,7 +204,12 @@ require("lazy").setup({
       "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
     }
-  }
+  },
+  -- {
+  --   "simrat39/rust-tools.nvim",
+  --   ft = { "rust" },
+  --
+  -- }
 }, {})
 --
 
@@ -228,6 +236,10 @@ require("telescope").setup({
         ["<C-u>"] = false,
         ["<C-d>"] = false,
       },
+    },
+    file_ignore_patterns = {
+      "node_modules/.*",
+      ".git/.*",
     },
   },
   pickers = {
@@ -393,7 +405,6 @@ local servers = {
   -- clangd = {},
   -- gopls = {},
   -- pyright = {},
-  -- rust_analyzer = {},
   tsserver = {},
   lua_ls = {
     Lua = {
@@ -401,11 +412,11 @@ local servers = {
       telemetry = { enable = false },
     },
   },
-  ["rust_analyzer"] = {
-    cargo = {
-      allFeatures = true,
-    }
-  }
+  -- ["rust_analyzer"] = {
+  --   cargo = {
+  --     allFeatures = true,
+  --   }
+  -- }
 }
 
 -- Setup neovim lua configuration
