@@ -90,7 +90,7 @@ require('lazy').setup({
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim',       opts = {} },
+      -- { 'j-hui/fidget.nvim',       opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -310,7 +310,7 @@ require('lazy').setup({
     'kevinhwang91/nvim-ufo',
     dependencies = { 'kevinhwang91/promise-async' },
     opts = {
-      filetype_exclude = { 'help', 'alpha', 'dashboard', 'neo-tree', 'Trouble', 'lazy', 'mason', 'telescope' },
+      filetype_exclude = { 'help', 'alpha', 'dashboard', 'neo-tree', 'Trouble', 'lazy', 'mason' },
     },
     config = function(_, opts)
       vim.api.nvim_create_autocmd('FileType', {
@@ -681,7 +681,7 @@ require('mason-lspconfig').setup()
 --  define the property 'filetypes' to the map in question.
 local servers = {
   tsserver = {},
-  eslint = {},
+  -- eslint = {},
   -- eslint_d = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
   lua_ls = {
