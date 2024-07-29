@@ -1,43 +1,3 @@
---[[
-
-=====================================================================
-==================== READ THIS BEFORE CONTINUING ====================
-=====================================================================
-
-Kickstart.nvim is *not* a distribution.
-
-Kickstart.nvim is a template for your own configuration.
-  The goal is that you can read every line of code, top-to-bottom, understand
-  what your configuration is doing, and modify it to suit your needs.
-
-  Once you've done that, you should start exploring, configuring and tinkering to
-  explore Neovim!
-
-  If you don't know anything about Lua, I recommend taking some time to read through
-  a guide. One possible example:
-  - https://learnxinyminutes.com/docs/lua/
-
-
-  And then you can explore or search through `:help lua-guide`
-  - https://neovim.io/doc/user/lua-guide.html
-
-
-Kickstart Guide:
-
-I have left several `:help X` comments throughout the init.lua
-You should run that command and read that help section for more information.
-
-In addition, I have some `NOTE:` items throughout the file.
-These are for you, the reader to help understand what is happening. Feel free to delete
-them once you know what you're doing, but they should serve as a guide for when you
-are first encountering a few different constructs in your nvim config.
-
-I hope you enjoy your Neovim journey,
-- TJ
-
-P.S. You can delete this when you're done too. It's your config now :)
---]]
-
 require('nguyenmho')
 
 -- Set <space> as the leader key
@@ -96,7 +56,6 @@ require('lazy').setup({
       'folke/neodev.nvim',
     },
   },
-
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -649,22 +608,28 @@ local on_attach = function(_, bufnr)
 end
 
 -- document existing key chains
-require('which-key').register {
-  ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-  ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-  ['<leader>g'] = { name = '[G]it', _ = 'which_key_ignore' },
-  ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
-  ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-  ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-  ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
-  ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+require('which-key').add {
+  {
+    { "",           desc = "<leader>h",        mode = "v" },
+    { "",           group = "VISUAL <leader>", mode = "v" },
+    { "<leader>c",  group = "[C]ode" },
+    { "<leader>c_", hidden = true },
+    { "<leader>d",  group = "[D]ocument" },
+    { "<leader>d_", hidden = true },
+    { "<leader>g",  group = "[G]it" },
+    { "<leader>g_", hidden = true },
+    { "<leader>h",  group = "Git [H]unk" },
+    { "<leader>h_", hidden = true },
+    { "<leader>r",  group = "[R]ename" },
+    { "<leader>r_", hidden = true },
+    { "<leader>s",  group = "[S]earch" },
+    { "<leader>s_", hidden = true },
+    { "<leader>t",  group = "[T]oggle" },
+    { "<leader>t_", hidden = true },
+    { "<leader>w",  group = "[W]orkspace" },
+    { "<leader>w_", hidden = true },
+  }
 }
--- register which-key VISUAL mode
--- required for visual <leader>hs (hunk stage) to work
-require('which-key').register({
-  ['<leader>'] = { name = 'VISUAL <leader>' },
-  ['<leader>h'] = { 'Git [H]unk' },
-}, { mode = 'v' })
 
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
@@ -694,7 +659,7 @@ local servers = {
   },
   solargraph = {
     solargraph = {
-      autoformat = true,
+      autoformat = false,
       completion = true,
       diagnostic = true,
       folding = true,
