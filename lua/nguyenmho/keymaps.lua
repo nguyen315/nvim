@@ -23,3 +23,4 @@ vim.keymap.set("n", "<C-l>", "<C-w>l")
 
 vim.keymap.set("n", "<leader>cf", ':let @+=expand("%")<CR>')
 
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)

@@ -49,6 +49,9 @@ require("lazy").setup({
   -- Commenting utility
   { "numToStr/Comment.nvim", opts = {} },
 
+  -- Context-aware commenting
+  'JoosepAlviste/nvim-ts-context-commentstring',
+
   -- Fuzzy Finder & Treesitter
   "nvim-telescope/telescope.nvim",
   {
@@ -112,9 +115,34 @@ require("lazy").setup({
 
   -- themes --
   "rose-pine/neovim",
-  "ellisonleao/gruvbox.nvim"
+  "ellisonleao/gruvbox.nvim",
+
+  "nvim-pack/nvim-spectre",
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = {
+        "LazyGit",
+        "LazyGitConfig",
+        "LazyGitCurrentFile",
+        "LazyGitFilter",
+        "LazyGitFilterCurrentFile",
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+        { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
+    }
+  }
 })
 
 -- Apply the colorscheme
 vim.cmd("colorscheme gruvbox")
 vim.o.winbar = "%{%v:lua.require('nvim-navic').get_location()%}"
+
+require('Comment').setup {
+  pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+}

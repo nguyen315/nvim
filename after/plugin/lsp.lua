@@ -2,6 +2,7 @@
 
 require("mason").setup()
 require("mason-lspconfig").setup({
+  automatic_enable = false,
   ensure_installed = { "ts_ls", "ruby_lsp" },
 })
 
